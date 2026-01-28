@@ -1,11 +1,491 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brain Map Analysis</title>
+    <title>The Brain: Roads vs. Traffic</title>
+    <style>
+        /* --- GLOBAL STYLES --- */
+        :root {
+            --structure-color: #2563eb; /* Blue for Roads */
+            --chemical-color: #ef4444;  /* Red for Traffic */
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #475569;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--structure-color);
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            padding: 160px 20px 100px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, #eff6ff 0%, #f8fafc 100%);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--structure-color), var(--chemical-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--text-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        section {
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--structure-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* --- THE ANALOGY (GRID) --- */
+        .analogy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .analogy-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s;
+        }
+
+        .analogy-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* --- METHODS (SPIN TEST) --- */
+        .methods-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .spin-animation-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* CSS Animation for Spin Test */
+        .brain-sphere {
+        font-size: 6rem; /* Adjust size for the brain emoji */
+        animation: spin 3s linear infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        @keyframes spin {
+        100% { transform: rotateY(360deg); } /* Rotate around the Y-axis */
+        }
+
+        .methods-text {
+            flex: 2;
+        }
+
+        /* --- RESULTS (PLACEHOLDERS) --- */
+        .result-block {
+            margin-bottom: 4rem;
+        }
+
+        .figure-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem; /* Add padding to create space around the image */
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            border-radius: 1rem;
+            width: auto; /* Allow the width to adjust dynamically */
+            height: auto; /* Allow the height to adjust dynamically */
+            max-width: 100%; /* Prevent it from exceeding the container's width */
+            overflow: hidden; /* Ensure no content overflows */
+        }
+
+        .figure-caption {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Example styles to simulate plots if image is missing */
+        .mock-heatmap {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 2px;
+            width: 80%;
+            height: 80%;
+        }
+        .heat-cell { background: #e2e8f0; }
+        .heat-cell.high { background: var(--structure-color); opacity: 0.8; }
+        .heat-cell.low { background: var(--chemical-color); opacity: 0.8; }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 4rem;
+        }
+        
+        .footer-links a {
+            margin: 0 10px;
+            color: var(--structure-color);
+            text-decoration: none;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .analogy-grid { grid-template-columns: 1fr; }
+            .methods-container { flex-direction: column; text-align: center; }
+        }
+    </style>
 </head>
 <body>
-    
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">DSC 180 Capstone Project</div>
+            <div class="nav-links">
+                <a href="#intro">The Analogy</a>
+                <a href="#methods">Methods</a>
+                <a href="#results">Results</a>
+                <a href="#conclusion">Impact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header>
+        <h1 class="hero-title">The Brain:<br>Roads vs. Traffic</h1>
+        <p class="hero-subtitle">
+            Do the physical components of the brain dictate its chemical activity? <br>
+            Or are they two independent systems?
+        </p>
+        <a href="#intro" class="btn">Explore the Analysis</a>
+    </header>
+
+    <!-- INTRODUCTION: THE ANALOGY -->
+    <section id="intro">
+        <div class="section-header">
+            <span class="section-tag">The Concept</span>
+            <h2>City Analogy</h2>
+            <p>To understand the complexity of the brain, we treat it like a city.</p>
+        </div>
+
+        <div class="analogy-grid">
+            <!-- Left Card: Structure -->
+            <div class="analogy-card">
+                <span class="icon"></span>
+                <h3 style="color: var(--structure-color)">🛣️ The Roads (Structure)</h3>
+                <p>
+                    <strong>Myelin Ratio, Cortical Thickness, Gene Expression, Allometric Scaling.</strong><br>
+                    Just like a city has physical infrastructure, the brain has "Roads." 
+                    These are the physical cables and highways that connect different regions.
+                </p>
+            </div>
+
+            <!-- Right Card: Chemistry -->
+            <div class="analogy-card">
+                <span class="icon"></span>
+                <h3 style="color: var(--chemical-color)">🚦 The Traffic (Chemical & Functional)</h3>
+                <p>
+                    <strong>Receptors (5-HT1A), Glucose Metabolism, Functional Gradient, Intersubject Variability.</strong><br>
+                    A road can be empty, or it can be jammed. The "Traffic" represents the flow of information.
+                    Neurotransmitters act like traffic lights, stopping or starting the flow regardless of the road size.
+                </p>
+            </div>
+        </div>
+            <p>Add transition or more about our project</p>
+    </section>
+
+    <!-- THE PROBLEM & METHODS -->
+    <section id="methods">
+        <div class="section-header">
+            <span class="section-tag">The Challenge</span>
+            <h2>The Statistical Trap</h2>
+        </div>
+        
+        <p>
+            Neuroscientists have studied these two layers separately. When trying to compare brain images, they often found false connections or inflated false positives. Why?
+            Because the brain is a smooth map where neighboring vertices are dependent of each other, not independent points. This is called <strong>Spatial Autocorrelation</strong>.
+        </p>
+
+        <div class="methods-container">
+            <div class="spin-animation-container">
+                <!-- CSS Animation representing the Spin Test -->
+                <div class="brain-sphere">🧠</div> <!-- Brain emoji -->
+            </div>
+            <div class="methods-text">
+                <h3>The Spin Test</h3>
+                <p>
+                    We use the <strong>Alexander-Bloch Spin Test</strong>. Instead of shuffling data randomly (destorying the brain map's structure), 
+                    we project the data onto a sphere and rotate it.
+                </p>
+                <p>
+                    This preserves the ... 
+                    This ensures that any connection we find is real, not just a coincidence.
+                </p>
+            </div>
+        </div>
+        <!-- New Section Header and Methods Text -->
+        <div class="section-header">
+            <h2>Pairwise Density Scatter plots</h2>
+        </div>
+        <div class="methods-container">
+            <div class="methods-text">
+                <p>
+                    Add text
+                </p>
+                <p>
+                    Add text
+                </p>
+            </div>
+        </div>
+        <!-- New Section Header and Methods Text -->
+        <div class="section-header">
+            <h2>Principle Component Analysis</h2>
+        </div>
+        <div class="methods-container">
+            <div class="methods-text">
+                <p>
+                    Add text
+                </p>
+                <p>
+                    Add text
+                </p>
+            </div>
+        </div>
+        <!-- New Section Header and Methods Text -->
+        <div class="section-header">
+            <h2>Subgorup Analysis</h2>
+        </div>
+        <div class="methods-container">
+            <div class="methods-text">
+                <p>
+                    Add text
+                </p>
+                <p>
+                    Add text
+                </p>
+            </div>
+        </div>
+            
+    </section>
+
+    <!-- RESULTS SECTION -->
+    <section id="results">
+        <div class="section-header">
+            <span class="section-tag">Our Findings</span>
+            <h2>Two Independent Modes?</h2>
+        </div>
+
+        <!-- Result 1: The Heatmap -->
+        <div class="result-block">
+            <h3>1. The Multimodal Matrix</h3>
+            <p>
+                We compared 8 different brain maps (4 Structural, 4 Chemical). 
+                The matrix below shows ...
+            </p>
+            
+            <div class="figure-placeholder">
+                <img src="images/spearman_matrix.png" alt="Correlation Matrix" style="max-width:100%; height:auto;">
+            </div>
+            <p class="figure-caption">Figure 1: The 8x8 Correlation Matrix showing the strength between brain map pairs.</p>
+        </div>
+
+            <!-- Result 2: PCA/Eigenmaps -->
+        <div class="result-block">
+            <h3>2. Pairwise Density Scatter plot</h3>
+            <p>
+                Add text
+            </p>
+            
+            <div class="figure-placeholder" style="background: #eef2ff;">
+                <!-- REPLACE THIS DIV WITH: <img src="assets/eigenmaps.png" alt="Brain Surfaces"> -->
+                <!-- <img src="images/" alt="Pariwise Scatter Plot"> -->
+            </div>
+            <p class="figure-caption">Figure 2: ... .</p>
+        </div>
+
+        <!-- Result 2: PCA/Eigenmaps -->
+        <div class="result-block">
+            <h3>3. Visualizaing Principle Component Analysis</h3>
+            <p>
+                Add text
+            </p>
+            
+            <div class="figure-placeholder" style="background: #eef2ff;">
+                <!-- REPLACE THIS DIV WITH: <img src="assets/eigenmaps.png" alt="Brain Surfaces"> -->
+                <!-- <img src="images/" alt="Pariwise Scatter Plot"> -->
+            </div>
+            <p class="figure-caption">Figure 3: ... .</p>
+        </div>
+            
+        <div class="result-block">
+            <h3>4. Subgroup Analysis</h3>
+            <p>
+                Using Principal Component Analysis (PCA), we explored ... .
+                We found that <strong>PC1</strong> and <strong>PC2</strong> ... .
+            </p>
+            
+            <div class="figure-placeholder" style="background: #eef2ff;">
+                <!-- REPLACE THIS DIV WITH: <img src="assets/eigenmaps.png" alt="Brain Surfaces"> -->
+                 <!-- <img src="images/" alt="Pariwise Scatter Plot"> -->
+            </div>
+            <p class="figure-caption">Figure 4: ... . </p>
+        </div>
+    </section>
+
+    <!-- CONCLUSION -->
+    <section id="conclusion" style="background: white; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+        <div class="section-header">
+            <span class="section-tag">The Impact</span>
+            <h2>Brain Map Coupling</h2>
+        </div>
+        <p>
+            Our analysis answers our the hypothesis: <strong>The roads do not strictly dictate the traffic.</strong>
+        </p>
+        <p>
+            We identified ... 
+        </p>
+        <p>
+            <strong>Why does this matter?</strong><br>
+            Add text
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>DSC 180 Capstone Project</strong> | UC San Diego</p>
+        <p class="footer-links">
+            <a href="https://github.com/kesouder/BrainMap_Analysis" target="_blank">GitHub Repository</a>
+            <a href="#">Read the Full Report</a>
+        </p>
+        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 1rem;">
+            Kevin Souder • Kevin Huang
+        </p>
+    </footer>
+
 </body>
 </html>
