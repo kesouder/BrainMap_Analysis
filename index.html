@@ -265,7 +265,7 @@
     <!-- NAVIGATION -->
     <nav>
         <div class="nav-container">
-            <div class="logo">DSC 180 Capstone Project</div>
+            <div class="logo">Multimodal Correlation Structure of the Human Brain</div>
             <div class="nav-links">
                 <a href="#intro">The Analogy</a>
                 <a href="#methods">Methods</a>
@@ -290,7 +290,7 @@
         <div class="section-header">
             <span class="section-tag">The Concept</span>
             <h2>City Analogy</h2>
-            <p>To understand the complexity of the brain, we treat it like a city.</p>
+            <p>To understand the complexity of the brain, we can think of it as a city.</p>
         </div>
 
         <div class="analogy-grid">
@@ -299,8 +299,8 @@
                 <span class="icon"></span>
                 <h3 style="color: var(--structure-color)">🛣️ The Roads (Structure)</h3>
                 <p>
-                    <strong>Myelin Ratio, Cortical Thickness, Gene Expression, Allometric Scaling.</strong><br>
-                    Just like a city has physical infrastructure, the brain has "Roads." 
+                    <strong>Myelin Ratio, Cortical Thickness, Gene Expression, Allometric Scaling NIH.</strong><br>
+                    Just like a city has physical infrastructure, the brain has "roads." 
                     These are the physical cables and highways that connect different regions.
                 </p>
             </div>
@@ -310,8 +310,8 @@
                 <span class="icon"></span>
                 <h3 style="color: var(--chemical-color)">🚦 The Traffic (Chemical & Functional)</h3>
                 <p>
-                    <strong>Receptors (5-HT1A), Glucose Metabolism, Functional Gradient, Intersubject Variability.</strong><br>
-                    A road can be empty, or it can be jammed. The "Traffic" represents the flow of information.
+                    <strong>5-HT1a Receptors, Glucose Metabolism, Functional Gradient, Intersubject Variability.</strong><br>
+                    A road can be empty, or it can have traffic. The "traffic" represents the flow of information.
                     Neurotransmitters act like traffic lights, stopping or starting the flow regardless of the road size.
                 </p>
             </div>
@@ -333,19 +333,20 @@
 
         <div class="methods-container">
             <div class="spin-animation-container">
-                <!-- CSS Animation representing the Spin Test -->
-                <div class="brain-sphere">🧠</div> <!-- Brain emoji -->
+                <div class="brain-sphere">🧠</div>
             </div>
             <div class="methods-text">
                 <h3>The Spin Test</h3>
                 <p>
-                    We use the <strong>Alexander-Bloch Spin Test</strong>. Instead of shuffling data randomly (destorying the brain map's structure), 
+                    We use the <strong>Alexander Bloch Spin Test</strong>. Instead of shuffling data randomly (destorying the brain map's structure), 
                     we project the data onto a sphere and rotate it.
                 </p>
                 <p>
-                    This preserves the ... 
-                    This ensures that any connection we find is real, not just a coincidence.
+                    This preserves the spatial topology of the brain map while breaking and randomizing the alignment between brain maps.
+                    This ensures that any correlation we find is real and not just a coincidence.
                 </p>
+                <!-- Preserves Topology: The smooth blobs stay smooth. The spatial autocorrelation is exactly the same as the original map.
+                Breaks Alignment: The "high myelin" blob is now sitting on top of a random part of the "functional gradient" map. -->
             </div>
         </div>
         <!-- New Section Header and Methods Text -->
@@ -404,14 +405,14 @@
         <div class="result-block">
             <h3>1. The Multimodal Matrix</h3>
             <p>
-                We compared 8 different brain maps (4 Structural, 4 Chemical). 
-                The matrix below shows ...
+                We compared 8 different brain maps (4 Structural & 4 Chemical). 
+                The matrix below shows the Spearman rho correlation between each unique brain map pair.
             </p>
             
             <div class="figure-placeholder">
                 <img src="images/spearman_matrix.png" alt="Correlation Matrix" style="max-width:100%; height:auto;">
             </div>
-            <p class="figure-caption">Figure 1: The 8x8 Correlation Matrix showing the strength between brain map pairs.</p>
+            <p class="figure-caption">Figure 1: The 8x8 Correlation Matrix shows the strength between brain map pairs.</p>
         </div>
 
             <!-- Result 2: PCA/Eigenmaps -->
