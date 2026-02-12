@@ -7,7 +7,7 @@ Our capstone project uses **neuromaps** to evaluate the relationship and interac
 ### Our Code
 Our workflow is in 'main.ipynb' for readability. <br> This implements our entire project.
 <br>
-'index.html' contains the code and styling for our website.
+'index.html' contains the code and styling for our website, along with the images folder.
 The rest of the files in this repo were downloaded during the installation of neuromaps. See below how to download neuromaps toolbox.
 
 
@@ -15,10 +15,11 @@ The rest of the files in this repo were downloaded during the installation of ne
 
 This repo provides reproducible code for:
 
-- **Fetching** publicly available cortical maps from the `neuromaps.datasets` API (e.g. Hill et al. 2010, Raichle et al. 2010).
-- **Resampling** them to a common surface space (fsLR, 164k or 32k mesh).
-- **Comparing** the **evolutionary expansion map** (`hill2010:evoexp`) with a set of **target maps** (e.g. `raichle:cbv`) using the **spin permutation test**.
-- **Computing** correlation coefficients (Pearson’s \( r \)) and spin-based \( p \)-values to evaluate statistical significance while accounting for spatial autocorrelation.
+- **Fetching** publicly available cortical maps from the `neuromaps.datasets` API (e.g. Raichle et al. 2010).
+- **Resampling** them to a common surface space (fsLR 32k mesh).
+- **Transforming** them from volumetric space to surface space (fsLR 32k mesh).
+- **Comparing** all of our brain maps to each other using the **spin permutation test**.
+- **Computing** correlation coefficients (Spearman rho) and spin-based \( p \)-values to evaluate statistical significance while accounting for spatial autocorrelation, Principle Component Analysis, and Subgroup Analysis.
 
 ## About Neuromaps
 
