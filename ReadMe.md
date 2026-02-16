@@ -1,25 +1,53 @@
 # DSC Capstone Quarter 2 Project: Structural vs. Chemical: A Statistical Approach to the Multimodal Correlation Structure of the Human Brain
 
 ### Co-Authors: Kevin Huang, Kevin Souder
-Our project utilizes the  **[neuromaps](https://www.nature.com/articles/s41592-022-01625-w)** framework — a standardized system for comparing human brain maps across modalities, spaces, and scales.  
+
+Our project utilizes the **[neuromaps](https://www.nature.com/articles/s41592-022-01625-w)** framework — a standardized system for comparing human brain maps across modalities, spaces, and scales.  
 Our capstone project uses **neuromaps** to evaluate the relationship and interaction between the structural and chemical & functional layers of the brain. To combat spatial autocorrelation, we use the **spin test** for non-parametric spatial null modeling to ensure our results are accurate.
 
 ### Our Code
+
 Our workflow is in 'main.ipynb' for readability. <br> This implements our entire project.
 <br>
 'index.html' contains the code and styling for our website, along with the images folder.
 The rest of the files in this repo were downloaded during the installation of neuromaps. See below how to download neuromaps toolbox.
 
-
 ## Purpose of this Repository
 
-This repo provides reproducible code for:
+This repository provides reproducible code for:
 
-- **Fetching** publicly available cortical maps from the `neuromaps.datasets` API (e.g. Raichle et al. 2010).
-- **Resampling** them to a common surface space (fsLR 32k mesh).
-- **Transforming** them from volumetric space to surface space (fsLR 32k mesh).
-- **Comparing** all of our brain maps to each other using the **spin permutation test**.
-- **Computing** correlation coefficients (Spearman rho) and spin-based \( p \)-values to evaluate statistical significance while accounting for spatial autocorrelation, Principle Component Analysis, and Subgroup Analysis.
+### 1. Data Standardization (Neuromaps)
+* **Fetching**: Automated retrieval of publicly available maps, including 5-HT1A receptors, CMRglc metabolism, PC1 gene expression, and myelin (T1w/T2w).
+* **Cross-Space Transformation**: Mapping volumetric MNI152 data and surface-based CIVET/fsaverage data onto a common **fsLR 32k mesh** using Connectome Workbench to ensure vertex-wise correspondence.
+
+### 2. Advanced Exploratory Data Analysis (EDA)
+* **Spatial Visualizations**: Generation of cortical surface projections for each modality to inspect spatial distributions and identify high/low intensity regions.
+* **Distribution Profiles**: Quantitative evaluation of value distributions across the cortex to inform the use of non-parametric, rank-based statistics.
+
+### 3. Multimodal Correlation & Spatial Statistics
+* **Pairwise Spearman Correlation**: Construction of an $8 \times 8$ multimodal correlation matrix capturing the relationships across diverse biological layers.
+* **Spatial Spin Tests**: Addressing spatial autocorrelation—the "inflated significance" problem in neuroimaging—using the Alexander-Bloch spin permutation method (1,000 permutations).
+* **Max-T Correction**: Implementing a spin-based max-T correction procedure to strictly control the family-wise error rate (FWER) across the correlation matrix.
+
+
+
+### 4. Dimensionality Reduction & Clustering
+* **Principal Component Analysis (PCA)**: Identifying the dominant axes of variance (gradients) that characterize the brain’s multimodal organization and identifying the maps with the highest loadings.
+* **Hierarchical Clustering**: Utilizing Ward’s linkage to identify natural biological groupings (subgroups) among structural, chemical, and functional maps.
+* **Subgroup Connectivity Analysis**: Quantifying the internal coherence of hypothesized structural and neurochemical modules and evaluating cross-modal interaction.
+
+## Datasets Used
+
+The following eight brain maps were fetched and standardized for this analysis:
+
+1.  **5-HT1A Receptor** (Savli et al., 2012) - _Neurochemical_
+2.  **Functional Gradient 1** (Margulies et al., 2016) - _Functional_
+3.  **Glucose Metabolism (CMRglc)** (Vaishnavi et al., 2010) - _Metabolic_
+4.  **Intersubject Variability** (Mueller et al., 2013) - _Functional_
+5.  **PC1 Gene Expression** (Burt et al., 2018 / Markello et al., 2021) - _Genetic_
+6.  **Myelin (T1w/T2w Ratio)** (Glasser et al., 2016) - _Structural_
+7.  **Cortical Thickness** (Glasser et al., 2016) - _Structural_
+8.  **Allometric Scaling (NIH)** (Reardon et al., 2018) - _Structural_
 
 ## About Neuromaps
 
@@ -108,10 +136,10 @@ By default, data are stored at:
    _Provides Functional Homology (FChomology) and Evolutionary Homology (evoexp) maps._
 
 9. **Reardon, P. K., Seidlitz, J., Vandekar, S., Liu, S., Patel, R., Park, M. T. M., Alexander-Bloch, A., Clasen, L. S., Blumenthal, J. D., Lalonde, F. M., & others. (2018).**  
-    _Normative brain size variation and brain shape diversity in humans._  
-    **Science, 360**(6394), 1222–1227.  
-    [https://doi.org/10.1126/science.aar2578](https://doi.org/10.1126/science.aar2578)  
-    _Corresponds to the Allometric Scaling (PNC) and Allometric Scaling (NIH) dataset in CIVET 41k space._
+   _Normative brain size variation and brain shape diversity in humans._  
+   **Science, 360**(6394), 1222–1227.  
+   [https://doi.org/10.1126/science.aar2578](https://doi.org/10.1126/science.aar2578)  
+   _Corresponds to the Allometric Scaling (PNC) and Allometric Scaling (NIH) dataset in CIVET 41k space._
 10. **Mueller, S., Wang, D., Fox, M. D., Yeo, B. T. T., Sepulcre, J., Sabuncu, M. R., Shafee, R., Lu, J., & Liu, H. (2013).**  
     _Individual variability in functional connectivity architecture of the human brain._  
     **Neuron, 77**(3), 586–595.  
