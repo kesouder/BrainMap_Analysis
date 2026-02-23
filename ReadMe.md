@@ -9,7 +9,7 @@ Our capstone project uses **neuromaps** to evaluate the relationship and interac
 
 Our workflow is in 'main.ipynb' for readability. <br> This implements our entire project.
 <br>
-'index.html' contains the code and styling for our website, along with the images folder.
+'index.html' contains the code and styling for our website, along with the images folder. The actual website is **[here](https://kevinhuang8706.github.io/dsc_capstone_website/)**. 
 The rest of the files in this repo were downloaded during the installation of neuromaps. See below how to download neuromaps toolbox.
 
 ## Purpose of this Repository
