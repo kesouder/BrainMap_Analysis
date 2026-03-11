@@ -38,6 +38,7 @@ def plot_pca_and_scree(corr_matrix, labels, figsize_scatter=(6, 6), figsize_scre
     plt.ylabel(f"PC2 loading (var={var_exp[1]:.2%})")
     plt.title("PCA of Correlation Matrix (Loadings)")
     plt.tight_layout()
+    plt.savefig("images/pca_loading.jpg")
     plt.show()
     
     # Plot: Scree plot
@@ -48,6 +49,7 @@ def plot_pca_and_scree(corr_matrix, labels, figsize_scatter=(6, 6), figsize_scre
     plt.ylabel("Proportion variance explained")
     plt.title("Scree Plot (from Correlation Matrix)")
     plt.tight_layout()
+    plt.savefig("images/pca_scree_plot.jpg")
     plt.show()
     return loadings, var_exp
 
@@ -78,6 +80,7 @@ def plot_pca_loadings_heatmap(loadings, labels, var_exp, figsize=(10, 6), cmap='
     
     plt.colorbar(im, label="Loading")
     plt.tight_layout()
+    plt.savefig("images/pca_loadings_heatmap.jpg")
     plt.show()
 # L = loadings.T  # (8 PCs, 8 maps)
 # plt.figure(figsize=(10, 6))

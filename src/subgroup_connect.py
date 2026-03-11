@@ -38,4 +38,5 @@ def plot_group_corr(res):
     plt.legend()
     plt.xlabel("correlation")
     plt.ylabel("count")
+    plt.savefig("images/groupwise_hist.jpg")
     plt.show()

@@ -120,6 +120,7 @@ def compute_and_display_maxt(df_corr, prepared_maps, nulls_list, method='pearson
     )
     plt.title(f"Significant Couplings (Max-T Corrected)\nThreshold: |rho| > {threshold:.3f}", fontsize=14)
     plt.tight_layout()
+    plt.savefig("images/max_t_corrected_table.jpg")
     plt.show()
     
     return maxt_table, threshold

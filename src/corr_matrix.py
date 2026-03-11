@@ -225,6 +225,7 @@ def plot_correlation_heatmaps(df_corr, df_significant, method=None):
     axes[1].tick_params(axis='y', rotation=0)
     
     plt.tight_layout()
+    plt.savefig("images/corr_heatmap_with_p_vals.jpg")
     plt.show()
 
 # Plot 1 Correlation Heatmap, no use of subplots
@@ -260,4 +261,5 @@ def plot_correlation_heatmap(corr_matrix, labels, title="Correlation Matrix Heat
 
     ax.set_title(title)
     plt.tight_layout()
+    plt.savefig("images/corr_heatmap.jpg")
     plt.show()

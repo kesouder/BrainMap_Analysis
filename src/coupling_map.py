@@ -84,6 +84,7 @@ def plot_coupling_map(coupling_map_data, space='fsLR', den='32k', title='Local C
     cbar.set_label('Coupling Strength', fontsize=11)
     
     plt.suptitle(title, fontsize=14, y=0.95)
+    plt.savefig(f"images/coupling_map_{title}.jpg")
     plt.show()
 
 

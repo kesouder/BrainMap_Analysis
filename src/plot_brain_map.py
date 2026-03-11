@@ -71,6 +71,7 @@ def plot_brain_map(map: dict, map_names: dict, brain_map_settings: dict):
     cbar = fig.colorbar(sm, ax=[ax1, ax2], shrink=0.6, location='right')
     cbar.set_label(f"{map_names.get(map_desc)}({map_space} {map_den})", fontsize=11)
     plt.suptitle(f"{map_names.get(map_desc)}", fontsize=14)
+    plt.savefig(f"images/brain_maps/{map_desc}.jpg")
     plt.show()
 
     return None

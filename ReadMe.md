@@ -7,10 +7,27 @@ Our capstone project uses **neuromaps** to evaluate the relationship and interac
 
 ### Our Code
 
-Our workflow is in 'main.ipynb' for readability. <br> This implements our entire project.
-<br>
-'index.html' contains the code and styling for our website, along with the images folder. The actual website is **[here](https://kevinhuang8706.github.io/dsc_capstone_website/)**.
-The rest of the files in this repo were downloaded during the installation of neuromaps. See below how to download neuromaps toolbox.
+```text
+BrainMap_Analysis/
+│
+├── src/                        # 📂 Modular Python engine
+│   ├── __init__.py             # Marks directory as a Python module
+│   ├── cluster.py              # Hierarchical clustering code
+│   ├── corr_matrix.py          # Correlation matrix calculation and plotting
+│   ├── coupling_map.py         # Plot coupling maps for unique pairs
+│   ├── pairwise_plot.py        # Pairwise scatterplots for brain maps
+│   ├── pca.py                  # PCA code and plotting functions
+│   ├── plot_brain_map.py       # Cortical surface projections (left/right views)
+│   ├── significance_test.py    # Significance testing including Max-T correction
+│   └── subgroup_connect.py     # Subgroup connectivity analysis and plotting
+│
+├── images/                     # 🖼️ Exported plots and save location
+├── main.ipynb                  # 📓 Primary presentation notebook
+├── requirements.txt            # 📦 Python dependencies
+└── README.md                   # 📖 Project documentation
+```
+
+Our workflow is in `main.ipynb` for readability, all plots and results in our analysis can be found there.
 
 ## Purpose of this Repository
 
@@ -70,6 +87,7 @@ pip install .
 ```
 
 For the rest of the libraries used, you can use the following command
+
 ```
 pip install requirement.txt
 ```

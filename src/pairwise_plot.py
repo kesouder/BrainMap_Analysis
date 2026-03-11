@@ -74,6 +74,7 @@ def plot_pairwise_scatterplots(prepared_maps, map_names, readable_map_names=None
         axes[k].axis('off')
         
     plt.tight_layout()
+    plt.savefig("images/pairwise_scatter_plot_unranked.jpg")
     plt.show()
 
 def pairwise_rank_scatterplot(prepared_maps, map_names, readable_map_names=None):
@@ -140,4 +141,5 @@ def pairwise_rank_scatterplot(prepared_maps, map_names, readable_map_names=None)
         axes[k].axis('off')
         
     plt.tight_layout()
+    plt.savefig("images/pairwise_scatterplot_ranked.jpg")
     plt.show()

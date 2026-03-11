@@ -29,6 +29,7 @@ def plot_hierarchical_clustering(corr_matrix, labels, method="average", figsize=
     plt.title("Dendrogram of Hierarchical Clustering")
     dendrogram(Z, labels=labels, leaf_rotation=45)
     plt.tight_layout()
+    plt.savefig('images/Dendrogram.jpg')
     plt.show()
     n_clusters = n_cluster
     h_labels = fcluster(Z, t=n_clusters, criterion="maxclust")
