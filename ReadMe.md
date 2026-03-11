@@ -9,7 +9,7 @@ Our capstone project uses **neuromaps** to evaluate the relationship and interac
 
 Our workflow is in 'main.ipynb' for readability. <br> This implements our entire project.
 <br>
-'index.html' contains the code and styling for our website, along with the images folder. The actual website is **[here](https://kevinhuang8706.github.io/dsc_capstone_website/)**. 
+'index.html' contains the code and styling for our website, along with the images folder. The actual website is **[here](https://kevinhuang8706.github.io/dsc_capstone_website/)**.
 The rest of the files in this repo were downloaded during the installation of neuromaps. See below how to download neuromaps toolbox.
 
 ## Purpose of this Repository
@@ -17,24 +17,26 @@ The rest of the files in this repo were downloaded during the installation of ne
 This repository provides reproducible code for:
 
 ### 1. Data Standardization (Neuromaps)
-* **Fetching**: Automated retrieval of publicly available maps, including 5-HT1A receptors, CMRglc metabolism, PC1 gene expression, and myelin (T1w/T2w).
-* **Cross-Space Transformation**: Mapping volumetric MNI152 data and surface-based CIVET/fsaverage data onto a common **fsLR 32k mesh** using Connectome Workbench to ensure vertex-wise correspondence.
+
+- **Fetching**: Automated retrieval of publicly available maps, including 5-HT1A receptors, CMRglc metabolism, PC1 gene expression, and myelin (T1w/T2w).
+- **Cross-Space Transformation**: Mapping volumetric MNI152 data and surface-based CIVET/fsaverage data onto a common **fsLR 32k mesh** using Connectome Workbench to ensure vertex-wise correspondence.
 
 ### 2. Advanced Exploratory Data Analysis (EDA)
-* **Spatial Visualizations**: Generation of cortical surface projections for each modality to inspect spatial distributions and identify high/low intensity regions.
-* **Distribution Profiles**: Quantitative evaluation of value distributions across the cortex to inform the use of non-parametric, rank-based statistics.
+
+- **Spatial Visualizations**: Generation of cortical surface projections for each modality to inspect spatial distributions and identify high/low intensity regions.
+- **Distribution Profiles**: Quantitative evaluation of value distributions across the cortex to inform the use of non-parametric, rank-based statistics.
 
 ### 3. Multimodal Correlation & Spatial Statistics
-* **Pairwise Spearman Correlation**: Construction of an $8 \times 8$ multimodal correlation matrix capturing the relationships across diverse biological layers.
-* **Spatial Spin Tests**: Addressing spatial autocorrelation—the "inflated significance" problem in neuroimaging—using the Alexander-Bloch spin permutation method (1,000 permutations).
-* **Max-T Correction**: Implementing a spin-based max-T correction procedure to strictly control the family-wise error rate (FWER) across the correlation matrix.
 
-
+- **Pairwise Spearman Correlation**: Construction of an $8 \times 8$ multimodal correlation matrix capturing the relationships across diverse biological layers.
+- **Spatial Spin Tests**: Addressing spatial autocorrelation—the "inflated significance" problem in neuroimaging—using the Alexander-Bloch spin permutation method (1,000 permutations).
+- **Max-T Correction**: Implementing a spin-based max-T correction procedure to strictly control the family-wise error rate (FWER) across the correlation matrix.
 
 ### 4. Dimensionality Reduction & Clustering
-* **Principal Component Analysis (PCA)**: Identifying the dominant axes of variance (gradients) that characterize the brain’s multimodal organization and identifying the maps with the highest loadings.
-* **Hierarchical Clustering**: Utilizing Ward’s linkage to identify natural biological groupings (subgroups) among structural, chemical, and functional maps.
-* **Subgroup Connectivity Analysis**: Quantifying the internal coherence of hypothesized structural and neurochemical modules and evaluating cross-modal interaction.
+
+- **Principal Component Analysis (PCA)**: Identifying the dominant axes of variance (gradients) that characterize the brain’s multimodal organization and identifying the maps with the highest loadings.
+- **Hierarchical Clustering**: Utilizing Ward’s linkage to identify natural biological groupings (subgroups) among structural, chemical, and functional maps.
+- **Subgroup Connectivity Analysis**: Quantifying the internal coherence of hypothesized structural and neurochemical modules and evaluating cross-modal interaction.
 
 ## Datasets Used
 
@@ -67,10 +69,9 @@ cd neuromaps
 pip install .
 ```
 
-For plotting, we used `matplotlib`, you can install it in Python using the command
-
+For the rest of the libraries used, you can use the following command
 ```
-pip install matplotlib
+pip install requirement.txt
 ```
 
 **IMPORTANT** In order to use tranformations and many other crucial functionalities in `neuromaps`, you must have **[Connectome Workbench](https://www.humanconnectome.org/software/connectome-workbench)** ready in your path, you can check this by the command
