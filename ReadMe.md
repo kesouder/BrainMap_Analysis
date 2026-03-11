@@ -10,7 +10,7 @@ Our capstone project uses **neuromaps** to evaluate the relationship and interac
 ```text
 BrainMap_Analysis/
 │
-├── src/                        # 📂 Modular Python engine
+├── src/                        # Modular Python engine
 │   ├── __init__.py             # Marks directory as a Python module
 │   ├── cluster.py              # Hierarchical clustering code
 │   ├── corr_matrix.py          # Correlation matrix calculation and plotting
@@ -21,10 +21,11 @@ BrainMap_Analysis/
 │   ├── significance_test.py    # Significance testing including Max-T correction
 │   └── subgroup_connect.py     # Subgroup connectivity analysis and plotting
 │
-├── images/                     # 🖼️ Exported plots and save location
-├── main.ipynb                  # 📓 Primary presentation notebook
-├── requirements.txt            # 📦 Python dependencies
-└── README.md                   # 📖 Project documentation
+├── images/                     # Exported plots and save location
+├── main.ipynb                  # Primary presentation notebook
+├── requirements.txt            # Python dependencies
+├── environment.yml             # Configuration details
+└── README.md                   # Project documentation
 ```
 
 Our workflow is in `main.ipynb` for readability, all plots and results in our analysis can be found there.
